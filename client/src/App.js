@@ -1,15 +1,20 @@
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import SongsContainer from './components/SongsContainer'
+import Filter from './components/Filter'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Steeping Tea
-        </h1>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className='App'>
+        <div className='static-text'>
+      	  <h1>Steeping Tea</h1>
+        </div>
+        <Filter />
+	      <SongsContainer />
+      </div>
+    );
+  }
 }
 
-export default App;
+export default App
