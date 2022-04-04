@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import Song from './Song'
+import Filter from './Filter'
+
 
 class SongsContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      projects: []
+      songs: []
     }
   }
 
@@ -14,7 +16,7 @@ class SongsContainer extends Component {
     return fetch(env_url + '/api/v1/songs.json')
     .then(response => response.json())
     .then(response => {
-      this.setState({projects: response})
+      this.setState({songs: response})
     })
     .catch(error => console.log(error))
   }
@@ -22,10 +24,15 @@ class SongsContainer extends Component {
     render() {
       return (
         <div>
+          <Filter songs={this.state.songs} />
+
+          
           Songs container:
-          {this.state.songs && this.state.songs.map((song) => {
-              return (<Song song={song.title} key={song.id} />)
-        })}
+          <div class="songs">
+            {this.state.songs && this.state.songs.map((song) => {
+              return (<Song song={song} key={song.id} />)
+            })}
+          </div>
 	      </div>
     );
   }

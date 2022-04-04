@@ -1,16 +1,23 @@
-{
-  [
+[
+  {
     "id": 1,
     "artist": "Ramones",
     "title": "Sheena is a Punk Rocker",
     "url": "https://www.foo.bar",
-    "duration": 350,
-  ],
-  [
+    "duration": 220
+  },
+  {
     "id": 2,
     "artist": "Misfits",
-    "title": "Where Eagles Dare",
-    "url": "https://www.foo.com",
-    "duration": 450,
-  ],
-}
+    "title": "Astrozombies",
+    "url": "https://www.foo.baz",
+    "duration": 178
+  },
+  {
+    "id": 3,
+    "artist": "X",
+    "title": "Los Angeles",
+    "url": "https://www.ciao.com",
+    "duration": 502
+  }
+]

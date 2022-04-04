@@ -3,25 +3,16 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
 const app = express();
 
-const localServer = ["http://localhost:8000"];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || localServer.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error("Not allowed by CORS"))
-    }
-  },
-  credentials: true,
-}
-
-app.use(cors(corsOptions));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,20 +38,6 @@ app.use('/', indexRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
-app.use(function(req, res, next) {
-  debugger;
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  next();
-})
 
 // error handler
 app.use(function(err, req, res, next) {
