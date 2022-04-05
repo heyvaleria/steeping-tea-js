@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 
 function greenTea({songs}) {
   console.log("green tea");
-  debugger;
   return songs.filter(song => song.duration < 180)
 }
 

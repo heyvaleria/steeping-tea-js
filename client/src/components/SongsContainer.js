@@ -1,41 +1,34 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useEffect, useMemo } from 'react'
 import Song from './Song'
 import Filter from './Filter'
 
+const SongsContainer = () => {
+  // const [filterBy, setFilterBy] = useState();
+  const [songs, setSongs] = useState();
+  //
+  // const filteredSongs = useMemo(() => {
+  //     return songs.filter(({ type }) => {
+  //         return type === filterBy;
+  //       })
+  //
+  //     }, [filterBy]);
 
-class SongsContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      songs: []
-    }
-  }
-
-  componentDidMount() {
-    const env_url = 'http://localhost:8000';
-    return fetch(env_url + '/api/v1/songs.json')
+  useEffect(() => {
+    fetch("http://localhost:8000/api/v1/songs.json")
     .then(response => response.json())
-    .then(response => {
-      this.setState({songs: response})
-    })
-    .catch(error => console.log(error))
-  }
+    .then(data => setSongs(data))
+  },[])
 
-    render() {
-      return (
-        <div>
-          <Filter songs={this.state.songs} />
-
-          
-          Songs container:
-          <div class="songs">
-            {this.state.songs && this.state.songs.map((song) => {
-              return (<Song song={song} key={song.id} />)
-            })}
-          </div>
-	      </div>
-    );
-  }
+  return (
+    <div>
+      <h2>Songs:</h2>
+      <div>
+        {songs && songs.map((song) =>
+          <Song song={song} key={song.id} />
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default SongsContainer
