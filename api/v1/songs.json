@@ -1,23 +1,30 @@
 [
   {
     "id": 1,
-    "artist": "Ramones",
-    "title": "Sheena is a Punk Rocker",
-    "url": "https://www.foo.bar",
-    "duration": 220
+    "artist": "Uccellino Giardino",
+    "title": "After Master",
+    "url": "http://www.tuskerette.com/boop/after-master/after-master.mp3",
+    "duration": 63
   },
   {
     "id": 2,
-    "artist": "Misfits",
-    "title": "Astrozombies",
-    "url": "https://www.foo.baz",
-    "duration": 178
+    "artist": "Sea Lions of Ballard",
+    "title": "Sea Dingus",
+    "url": "http://www.tuskerette.com/boop/sea-dingus/sea-dingus.mp3",
+    "duration": 220
   },
   {
     "id": 3,
-    "artist": "X",
-    "title": "Los Angeles",
-    "url": "https://www.ciao.com",
+    "artist": "Lucy R.",
+    "title": "Lucy R. Needs A-Dance",
+    "url": "http://www.tuskerette.com/boop/lucys-song-needs-a-dance.mp3",
     "duration": 502
+  },
+  {
+    "id": 4,
+    "artist": "Stiv Bezos",
+    "title": "It's Vacation Now",
+    "url": "http://www.tuskerette.com/tmp/stiv-bezos/its-vacation-now/its-vacation-now-final.mp3",
+    "duration": 91
   }
 ]

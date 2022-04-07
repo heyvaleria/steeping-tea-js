@@ -5,8 +5,7 @@ const Song = ({song}) =>
     <hr />
     <p>Artist: {song.artist}</p>
     <p>Title: {song.title}</p>
-    <h4>Duration: {song.duration}</h4>
-    <p>This will be the audio tag: <a href={song.url} target="_blank" rel="noopener noreferrer">song url</a></p>
+    <audio src={song.url} controls />
   </div>
 
 export default Song

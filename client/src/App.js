@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
 import SongsContainer from './components/SongsContainer'
-// import Filter from './components/Filter'
 
 class App extends Component {
   render() {
