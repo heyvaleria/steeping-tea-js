@@ -21,14 +21,14 @@ const SongsContainer = () => {
     },
   ];
 
-  const [filterBy, setFilterBy] = useState();
+  const [tea, setTeaBy] = useState();
   const [songs, setSongs] = useState([]);
 
   const filteredSongs = useMemo(() => {
     return songs.filter(song =>
-      song.duration <= filterBy.range[1] && song.duration >= filterBy.range[0]
+      song.duration <= tea.range[1] && song.duration >= tea.range[0]
     )
-  }, [filterBy]);
+  }, [tea]);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/v1/songs.json")
@@ -39,7 +39,7 @@ const SongsContainer = () => {
   return (
     <div>
       {teaTypes.map((tea) =>
-        <button key={tea.label} onClick={() => setFilterBy(tea)}>{tea.label}</button>
+        <button key={tea.label} onClick={() => setTeaBy(tea)}>{tea.label}</button>
       )}
       <h2>Songs:</h2>
       <div>
