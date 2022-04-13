@@ -12,7 +12,7 @@ const client = new Client({
 client.connect();
 
 
-router.get('/v1/songs', function(req, res, next) {
+router.get('/', function(req, res, next) {
   client.query('SELECT * FROM songs', (err, response) => {
     if (err) {
       console.log(err.stack)
@@ -22,5 +22,9 @@ router.get('/v1/songs', function(req, res, next) {
     }
   })
 });
+
+router.post('/', (req, res) => {
+  res.send('I am here')
+})
 
 module.exports = router;

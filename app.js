@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api', songsRouter);
+app.use('/api/v1/songs', songsRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
