@@ -31,9 +31,9 @@ const SongsContainer = () => {
   }, [tea]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/songs.json")
+    fetch("http://localhost:8000/api/v1/songs")
     .then(response => response.json())
-    .then(data => setSongs(data))
+    .then(data => setSongs(data.songs))
   },[])
 
   return (
