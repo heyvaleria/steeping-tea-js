@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const NewSongForm = () => {
+const AddSongForm = () => {
   return (
     <div>
       <h2>Add a song</h2>
@@ -50,4 +50,4 @@ const NewSongForm = () => {
     </div>
   )};
 
-export default NewSongForm;
+export default AddSongForm;
