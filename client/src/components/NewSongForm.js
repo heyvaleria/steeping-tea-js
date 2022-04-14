@@ -1,25 +1,22 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import { object, string, number, date, InferType } from 'yup';
+import * as Yup from 'yup';
 
 const NewSongForm = () => {
-
   return (
     <div>
       <h2>Add a song</h2>
       <Formik
-        initialValues={{ artist: '', title: '', url: '', duration: 0 }}
-        validate={values => {
-          const errors = {};
-          if (!values.url) {
-            errors.url = 'Required';
-          } else if (
-            !RegExp('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?').test(values.url)
-          ) {
-            errors.url = 'Invalid URL format';
-          }
-          return errors;
-        }}
+        initialValues={{ artist: '', title: '', url: '' }}
+        validationSchema={Yup.object({
+         artist: Yup.string()
+           .max(40, 'Must be 40 characters or less')
+           .required('Required'),
+         title: Yup.string()
+           .max(40, 'Must be 40 characters or less')
+           .required('Required'),
+         url: Yup.string().url('Invalid URL format').required('Required'),
+       })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
@@ -29,10 +26,21 @@ const NewSongForm = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <Field type="artist" name="artist" />
-            <Field type="title" name="title" />
-            <Field type="url" name="url" />
-            <ErrorMessage name="url" component="div" />
+            <p>
+              <label htmlFor="artist">Artist </label>
+              <Field name="artist" type="text" />
+              <ErrorMessage name="artist" />
+            </p>
+            <p>
+              <label htmlFor="title">Title </label>
+              <Field name="title" type="text" />
+              <ErrorMessage name="title" />
+            </p>
+            <p>
+              <label htmlFor="url">Song URL </label>
+              <Field name="url" type="text" />
+              <ErrorMessage name="url" />
+            </p>
             <button type="submit" disabled={isSubmitting}>
               Submit
             </button>

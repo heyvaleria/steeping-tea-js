@@ -38,6 +38,7 @@ const SongsContainer = () => {
 
   return (
     <div>
+      <h2>Filter by tea type</h2>
       {teaTypes.map((tea) =>
         <button key={tea.label} onClick={() => setTeaBy(tea)}>{tea.label}</button>
       )}
