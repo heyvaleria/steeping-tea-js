@@ -1,7 +1,8 @@
 import React from 'react'
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
-// https://formik.org/docs/tutorial < check this out for more info
+// https://formik.org/docs/tutorial
+// ^TIL: check this out for more info
 
 const CustomInput = ({ label, ...props }) => {
    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -32,12 +33,25 @@ const AddSongForm = () => {
          title: Yup.string()
            .max(40, 'Must be 40 characters or less')
            .required('Required'),
-         url: Yup.string().url('Invalid URL format').required('Required'),
+         url: Yup.string(),
+         // url: Yup.string().url('Invalid URL format').required('Required'),
+         // for speed local developing and testing I don't want to have to type a url each time
        })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            alert(JSON.stringify(values));
+            fetch('http://localhost:8000/api/v1/songs', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(values, null, 2)
+            })
+            // .then(data => console.log(data))
+            .catch(err => console.log(err.stack))
+
             // ^ JSON.stringify(value, replacer, space)
+            // TIL stuff: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+
             setSubmitting(false);
           }, 400);
         }}

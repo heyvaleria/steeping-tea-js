@@ -11,20 +11,30 @@ const client = new Client({
 });
 client.connect();
 
-
-router.get('/', function(req, res, next) {
-  client.query('SELECT * FROM songs', (err, response) => {
+router.get('/', function(req, res) {
+  client.query('SELECT * FROM songs', (err, results) => {
     if (err) {
       console.log(err.stack)
-      // make me better eventually
     } else {
-      return res.json({songs: response.rows})
+      return res.json({songs: results.rows})
     }
   })
 });
 
 router.post('/', (req, res) => {
-  res.send('I am here')
+  const newSong = {
+    artist: req.body.artist,
+    title: req.body.title,
+    url: req.body.url
+  }
+  client.query('INSERT INTO songs (artist, title, url) VALUES ($1, $2, $3)',
+    [newSong.artist, newSong.title, newSong.url], (err, results) => {
+      if (err) {
+        console.log(err.stack)
+      } else {
+        res.status(201)
+      }
+  })
 })
 
 module.exports = router;
