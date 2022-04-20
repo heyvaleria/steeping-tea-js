@@ -38,19 +38,19 @@ router.get('/', (request, response) => {
 });
 
 // promise version
-router.post('/', function(req, res) {
-  getAudioDurationInSeconds(req.body.url)
-  .then(duration => buildSong(req.body, duration))
+router.post('/', function(request, response) {
+  getAudioDurationInSeconds(request.body.url)
+  .then(duration => buildSong(request.body, duration))
   .then(postNewSong)
   .catch(e => console.error(e.stack))
 })
 
 // async await version
-// router.post('/', async (req, res) => {
-//   const duration = await getAudioDurationInSeconds(req.body.url)
-//   const song = buildSong(req.body, duration)
+// router.post('/', async (request, response) => {
+//   const duration = await getAudioDurationInSeconds(request.body.url)
+//   const song = buildSong(request.body, duration)
 //   await postNewSong(song)
-//   res.send('song added')
+//   response.send('song added')
 // })
 
 module.exports = router;
