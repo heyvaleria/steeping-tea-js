@@ -33,9 +33,7 @@ const AddSongForm = () => {
          title: Yup.string()
            .max(40, 'Must be 40 characters or less')
            .required('Required'),
-         url: Yup.string(),
-         // url: Yup.string().url('Invalid URL format').required('Required'),
-         // for speed local developing and testing I don't want to have to type a url each time
+         url: Yup.string().url('Invalid URL format').required('Required'),
        })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -45,12 +43,11 @@ const AddSongForm = () => {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify(values, null, 2)
+              // ^ JSON.stringify(value, replacer, space)
+              // TIL stuff: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
             })
             // .then(data => console.log(data))
             .catch(err => console.log(err.stack))
-
-            // ^ JSON.stringify(value, replacer, space)
-            // TIL stuff: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
 
             setSubmitting(false);
           }, 400);
