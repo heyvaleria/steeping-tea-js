@@ -26,14 +26,15 @@ const postNewSong = (song) => {
     [song.artist, song.title, song.url, song.duration])
 }
 
-router.get('/', (req, res) => {
-  client.query('SELECT * FROM songs', (err, results) => {
-    if (err) {
-      console.log(err.stack)
-    } else {
-      return res.json({songs: results.rows})
-    }
-  })
+const showAllSongs = (response) => {
+  client
+  .query('SELECT * FROM songs')
+  .then(results => response.json({songs: results.rows}))
+  .catch(e => console.error(e.stack))
+}
+
+router.get('/', (request, response) => {
+  showAllSongs(response)
 });
 
 // promise version
